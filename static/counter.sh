@@ -1,1 +1,0 @@
-untex ../*.tex | wc -w
