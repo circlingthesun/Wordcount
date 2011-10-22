@@ -102,7 +102,6 @@ def timedatas():
     c.execute('SELECT id, d as "[timestamp]", name, count FROM count')
 
     data = c.fetchall()
-    print data
     result = {}
 
     for (id, date, name, count) in data:
