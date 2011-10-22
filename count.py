@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 conn = sqlite3.connect('counts.db', detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
 c = conn.cursor()
-sql = 'create table if not exists count (id INTEGER PRIMARY KEY AUTOINCREMENT, d date, name TEXT, count INTEGER)'
+sql = 'create table if not exists count (id INTEGER PRIMARY KEY AUTOINCREMENT, d timestamp, name TEXT, count INTEGER)'
 c.execute(sql)
 
 filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), "count.txt")
@@ -18,7 +18,7 @@ filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), "count.txt")
 def hello():
     conn = sqlite3.connect('counts.db', detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
     c = conn.cursor()
-    c.execute("SELECT max(id), d, name, count FROM count GROUP BY name")
+    c.execute('SELECT max(id), d as "[timestamp]", name, count FROM count GROUP BY name')
     data = c.fetchall()
 
     re = """<!DOCTYPE HTML>
@@ -98,7 +98,7 @@ def hello():
 def timedatas():
     conn = sqlite3.connect('counts.db', detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
     c = conn.cursor()
-    c.execute('SELECT id, d as "d [date]", name, count FROM count')
+    c.execute('SELECT id, d as "[timestamp]", name, count FROM count')
     data = c.fetchall()
     result = {}
 
@@ -111,9 +111,7 @@ def timedatas():
     for name in result:
         final.append({ "name": name, "data": result[name]})
 
-    dthandler = lambda obj: obj.isoformat() if isinstance(obj, datetime.datetime) else None
-
-    return json.dumps(final, default=dthandler)
+    return json.dumps(final)
 
 @app.route("/update", methods=['POST', 'GET'])
 def update():
