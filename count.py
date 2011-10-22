@@ -18,7 +18,7 @@ filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), "count.txt")
 def hello():
     conn = sqlite3.connect('counts.db', detect_types=sqlite3.PARSE_DECLTYPES)
     c = conn.cursor()
-    c.execute("SELECT max(id), date, name, count FROM count")
+    c.execute("SELECT max(id), date, name, count FROM count GROUP BY name")
     data = c.fetchall()
 
     re = ""
