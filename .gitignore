@@ -1,2 +1,7 @@
 .py*
 *~
+lib/*
+include/*
+*.db-journal
+bin/*
+.DS_Store
