@@ -99,7 +99,7 @@ def hello():
 @app.route("/json")
 def timedatas():
     try:
-        conn = sqlite3.connect('counts.db', detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
+        conn = sqlite3.connect(db_file, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
         c = conn.cursor()
         c.execute('SELECT id, d as "[timestamp]", name, count FROM count')
 
@@ -121,7 +121,7 @@ def timedatas():
 
 @app.route("/update", methods=['POST', 'GET'])
 def update():
-    conn = sqlite3.connect('counts.db', detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
+    conn = sqlite3.connect(db_file, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
     c = conn.cursor()
     
     try:
