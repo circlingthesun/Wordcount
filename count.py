@@ -48,6 +48,11 @@ def hello():
         
             var chart;
             $(document).ready(function() {
+                Date.prototype.addHours= function(h){
+                    this.setHours(this.getHours()+h);
+                    return this;
+                }
+
                 $.getJSON("/json", function(datas) {
                     console.log(datas);
 
@@ -55,9 +60,8 @@ def hello():
                         console.log(datas[series]);
                         for (d in datas[series]["data"]) {
                             console.log(datas[series]["data"][d]);
-                            var datemin2 = Date.parse(datas[series]["data"][d][0]);
-                            datemin2.setHours(datemin2.getHours()+2); 
-                            datas[series]["data"][d][0] = datemin2; 
+                            
+                            datas[series]["data"][d][0] = (new Date(Date.parse(datas[series]["data"][d][0]))).addHours(2);
                         }
 
                     }
