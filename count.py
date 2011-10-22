@@ -16,6 +16,7 @@ filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), "count.txt")
 
 @app.route("/")
 def hello():
+
     #conn = sqlite3.connect('counts.db', detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
     #c = conn.cursor()
     #c.execute("SELECT max(id), d, name, count FROM count GROUP BY name")
@@ -98,7 +99,8 @@ def hello():
 def timedatas():
     conn = sqlite3.connect('counts.db', detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
     c = conn.cursor()
-    c.execute('SELECT id, d as "d [timestamp]", name, count FROM count')
+    c.execute('SELECT id, d as "[timestamp]", name, count FROM count')
+
     data = c.fetchall()
     print data
     result = {}
