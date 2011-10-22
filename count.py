@@ -69,6 +69,7 @@ def hello():
                     chart = new Highcharts.Chart({
                         chart: {
                             renderTo: 'container',
+                            zoomType: 'x',
                             type: 'spline'
                         },
                         title: {
@@ -76,6 +77,7 @@ def hello():
                         },
                         xAxis: {
                             type: 'datetime',
+                            maxzoom: 3600000,
                             dateTimeLabelFormats: { // don't display the dummy year
                                 month: '%e. %b',
                                 year: '%b'
