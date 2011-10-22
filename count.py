@@ -97,23 +97,26 @@ def hello():
 
 @app.route("/json")
 def timedatas():
-    conn = sqlite3.connect('counts.db', detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
-    c = conn.cursor()
-    c.execute('SELECT id, d as "[timestamp]", name, count FROM count')
+    try:
+        conn = sqlite3.connect('counts.db', detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
+        c = conn.cursor()
+        c.execute('SELECT id, d as "[timestamp]", name, count FROM count')
 
-    data = c.fetchall()
-    result = {}
+        data = c.fetchall()
+        result = {}
 
-    for (id, date, name, count) in data:
-        if not name in result:
-            result[name] = []
-        result[name].append([date.isoformat(), count])
-    
-    final = []
-    for name in result:
-        final.append({ "name": name, "data": result[name]})
+        for (id, date, name, count) in data:
+            if not name in result:
+                result[name] = []
+            result[name].append([date.isoformat(), count])
+        
+        final = []
+        for name in result:
+            final.append({ "name": name, "data": result[name]})
 
-    return json.dumps(final)
+        return json.dumps(final)
+    except Exception as e:
+        return str(e)
 
 @app.route("/update", methods=['POST', 'GET'])
 def update():
