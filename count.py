@@ -50,6 +50,16 @@ def hello():
             $(document).ready(function() {
                 $.getJSON("/json", function(datas) {
                     console.log(datas);
+
+                    for (series in datas) {
+                        console.log(datas[series]);
+                        for (d in datas[series]["data"]) {
+                            console.log(datas[series]["data"][d]);
+                            datas[series]["data"][d][0] = Date.parse(datas[series]["data"][d][0]); 
+                        }
+
+                    }
+
                     chart = new Highcharts.Chart({
                         chart: {
                             renderTo: 'container',
