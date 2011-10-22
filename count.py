@@ -55,7 +55,9 @@ def hello():
                         console.log(datas[series]);
                         for (d in datas[series]["data"]) {
                             console.log(datas[series]["data"][d]);
-                            datas[series]["data"][d][0] = Date.parse(datas[series]["data"][d][0]); 
+                            var datemin2 = Date.parse(datas[series]["data"][d][0]);
+                            datemin2.setHours(datemin2.getHours()+2); 
+                            datas[series]["data"][d][0] = datemin2; 
                         }
 
                     }
@@ -101,6 +103,7 @@ def hello():
         <!-- 3. Add the container -->
         <div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
         
+        <a href="/static/wordcount.tar.gz">Download</a> the app to add your name.
                 
     </body>
 </html>"""
