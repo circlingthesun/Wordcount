@@ -22,8 +22,13 @@ def run():
         if error:
             print "Error %s" % error
         params = urllib.urlencode({'c': count, 'name': name})
-        f = urllib.urlopen(url, params)
-        print f.read()
+        
+        try:
+            f = urllib.urlopen(url, params)
+            print f.read()
+        except:
+            print "Cannot comunicate with server"
+            
         time.sleep(interval)
     
 if __name__ == "__main__":
