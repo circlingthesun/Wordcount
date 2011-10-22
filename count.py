@@ -61,7 +61,7 @@ def hello():
                         for (d in datas[series]["data"]) {
                             console.log(datas[series]["data"][d]);
                             
-                            datas[series]["data"][d][0] = (new Date(Date.parse(datas[series]["data"][d][0]))).addHours(2);
+                            datas[series]["data"][d][0] = Date.parse(datas[series]["data"][d][0]) + 2 * 60 * 60 * 1000;
                         }
 
                     }
