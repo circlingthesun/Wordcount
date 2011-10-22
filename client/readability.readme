@@ -1,0 +1,41 @@
+The readability.py script is a python program to calculate
+various readability statistics for plain text files.  Please
+see the comments inside the script for the definitions and
+references.  See the Wikipedia article on readability at
+http://en.wikipedia.org/wiki/Readability.
+
+There are three files in this package:
+
+    readability.readme      This file
+    readability.py          The python script
+    words.py                A python dictionary giving the
+                            number of syllables in a word.
+
+To run this script, you will need python.  If you're on a
+Linux system, you probably already have it.  You can go to
+http://www.python.org/ and download a distribution.  Version
+2.4.2 is current as of this writing (1 Nov 2005).
+
+You will run this script in a console window and type something
+like 
+
+    python p/readability.py abc.txt
+
+to see the readability statistics on the file abc.txt.  p is the
+path to where you've unpacked the files.  
+
+Important:  you will have to add the words.py file to a directory
+in the environment variable PYTHONPATH.  This variable tells python
+where to look for imported files.  You will also likely want to 
+add the directory where python.exe is to your PATH.
+
+If you wish, you can delete the words.py file.  The readability.py 
+script will use an internal function to estimate the number of
+syllables in each word.  This isn't as accurate as using the 
+dictionary, but you'll get similar numbers.  Regardless, I only
+trust the numbers to within 1 or two grade levels.
+
+Don Peterson
+1 Nov 2005
+donp at gdssw.com
+
