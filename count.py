@@ -8,7 +8,7 @@ import sqlite3
 app = Flask(__name__)
 
 db_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "counts.db")
-conn = sqlite3.connect('counts.db', detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
+conn = sqlite3.connect(db_file, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
 c = conn.cursor()
 sql = 'create table if not exists count (id INTEGER PRIMARY KEY AUTOINCREMENT, d timestamp, name TEXT, count INTEGER)'
 c.execute(sql)
