@@ -21,7 +21,7 @@ def gettext(xmldata):
     handler = textHandler()
     handler.text = []
     sax.parseString(xmldata, handler)
-    return " ".join(handler.text)
+    return "".join(handler.text)
         
 def wordcount(text):
     # assumes words are separated by whitespace
@@ -35,8 +35,5 @@ def countdocx(filename):
 if __name__ == '__main__':   
     try:
         print countdocx(sys.argv[1])
-        print countdocx(sys.argv[1]) 
-        print countdocx(sys.argv[1]) 
-        print countdocx(sys.argv[1]) 
     except:    
         exit()   
