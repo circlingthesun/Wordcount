@@ -15,7 +15,7 @@ def getXml(filename):
 class textHandler(ContentHandler):
     text = []
     def characters(self, ch):
-        self.text.append(ch.encode("Latin-1"))
+        self.text.append(ch.encode("utf-8"))
 
 def gettext(xmldata):
     handler = textHandler()
