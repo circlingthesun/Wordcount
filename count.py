@@ -109,7 +109,7 @@ def hello():
         <!-- 3. Add the container -->
         <div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
         
-        <a href="/static/wordcount.tar.gz">Download</a> the app to add your name.
+        <a href="/static/client.zip">Download</a> the app to add your name.
                 
     </body>
 </html>"""
