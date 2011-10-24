@@ -74,7 +74,7 @@
                     });
 
                     function getMoar () {
-                        $.getJSON("/json?min=5", function(dat) {
+                        $.getJSON("/json?min=1", function(dat) {
                             console.log("GOT MOAR");
                             for (series in dat) {
                                 for (d in dat[series]["data"]) {
@@ -86,7 +86,7 @@
                         });
                     };
 
-                    setInterval(getMoar, 5000000);
+                    setInterval(getMoar, 30000);
                 });
                 
             });
