@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Many words have been written</title>
+        
+        
+        <!-- 1. Add these JavaScript inclusions in the head of your page -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+        <script type="text/javascript" src="static/js/highcharts.js"></script>
+        
+        <!-- 1a) Optional: add a theme file -->
+        <!--
+            <script type="text/javascript" src="static/js/themes/gray.js"></script>
+        -->
+        
+        <!-- 1b) Optional: the exporting module -->
+        <script type="text/javascript" src="static/js/modules/exporting.js"></script>
+        
+        
+        <!-- 2. Add the JavaScript to initialize the chart on document ready -->
+        <script type="text/javascript">
+        
+            var chart;
+            $(document).ready(function() {
+                Date.prototype.addHours= function(h){
+                    this.setHours(this.getHours()+h);
+                    return this;
+                }
+
+                $.getJSON("/json", function(datas) {
+                    //console.log(datas);
+
+                    for (series in datas) {
+                        //console.log(datas[series]);
+                        for (d in datas[series]["data"]) {
+                            //console.log(datas[series]["data"][d]);
+                            
+                            datas[series]["data"][d][0] = Date.parse(datas[series]["data"][d][0]) + 2 * 60 * 60 * 1000;
+                        }
+
+                    }
+
+                    chart = new Highcharts.Chart({
+                        chart: {
+                            renderTo: 'container',
+                            zoomType: 'x',
+                            type: 'spline'
+                        },
+                        title: {
+                            text: 'The number of words written by great hackers'
+                        },
+                        xAxis: {
+                            type: 'datetime',
+                            maxzoom: 3600000,
+                            dateTimeLabelFormats: { // don't display the dummy year
+                                month: '%e. %b',
+                                year: '%b'
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Words'
+                            },
+                            min: 0
+                        },
+                        tooltip: {
+                            formatter: function() {
+                                    return '<b>'+ this.series.name +'</b><br/>'+
+                                    Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y +' m';
+                            }
+                        },
+                        series: datas
+                    });
+
+                    function getMoar () {
+                        $.getJSON("/json?min=5", function(dat) {
+                            console.log("GOT MOAR");
+                            for (series in dat) {
+
+                                for (d in dat[series]["data"]) {
+                                    dat[series]["data"][d][0] = Date.parse(datas[series]["data"][d][0]) + 2 * 60 * 60 * 1000;
+                                    console.log(dat[series]["data"][d]);
+                                }
+
+                                var found = false;
+                                for (serie in chart.series) {
+                                    if (dat[series]["name"] == chart.series[serie]["name"]) {
+                                        console.log("hurray");
+                                        chart.series[serie].addPoint(dat[series]["data"][0]);
+                                    }
+                                    console.log(chart.series[serie]["name"]);
+                                }
+                            }
+                        });
+                    };
+
+                    setInterval(getMoar(), 5);
+                });
+                
+            });
+                
+        </script>
+        
+    </head>
+    <body>
+        
+        <!-- 3. Add the container -->
+        <div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
+        
+        <a href="/static/client.zip">Download</a> the app to add your name.
+                
+    </body>
+</html>
