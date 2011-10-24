@@ -1,6 +1,6 @@
 #!/usr/bin/python
-import os, json
-from datetime import datetime
+import os, json, dateutil.parser
+from datetime import datetime, timedelta
 from flask import Flask
 from flask import request
 import sqlite3
@@ -128,7 +128,13 @@ def timedatas():
         for (id, date, name, count) in data:
             if not name in result:
                 result[name] = []
-            result[name].append([date.isoformat(), count])
+                result[name].append([date.isoformat(), count])
+            elif date - dateutil.parser.parse(result[name][-1][0]) > timedelta(minutes=5):
+                result[name].append([date.isoformat(), count])
+            else: 
+                c.execute('DELETE FROM count where id = ?', (id,))
+                conn.commit()
+                print id
         
         final = []
         for name in result:
