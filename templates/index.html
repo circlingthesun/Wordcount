@@ -78,8 +78,7 @@
                             console.log("GOT MOAR");
                             for (series in dat) {
                                 for (d in dat[series]["data"]) {
-                                    dat[series]["data"][d][0] = Date.parse(datas[series]["data"][d][0]) + 2 * 60 * 60 * 1000;
-                                    console.log(dat[series]["data"][d]);
+                                    dat[series]["data"][d][0] = Date.parse(dat[series]["data"][d][0]) + 2 * 60 * 60 * 1000;
                                 }
                                 chart.get(dat[series]["id"]).addPoint(dat[series]["data"][0]);
                             }
