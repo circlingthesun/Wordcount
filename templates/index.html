@@ -77,25 +77,16 @@
                         $.getJSON("/json?min=5", function(dat) {
                             console.log("GOT MOAR");
                             for (series in dat) {
-
                                 for (d in dat[series]["data"]) {
                                     dat[series]["data"][d][0] = Date.parse(datas[series]["data"][d][0]) + 2 * 60 * 60 * 1000;
                                     console.log(dat[series]["data"][d]);
                                 }
-
-                                var found = false;
-                                for (serie in chart.series) {
-                                    if (dat[series]["name"] == chart.series[serie]["name"]) {
-                                        console.log("hurray");
-                                        chart.series[serie].addPoint(dat[series]["data"][0]);
-                                    }
-                                    console.log(chart.series[serie]["name"]);
-                                }
+                                chart.get(dat[series]["id"]).addPoint(dat[series]["data"][0]);
                             }
                         });
                     };
 
-                    setInterval(getMoar(), 5);
+                    setInterval(getMoar, 5000000);
                 });
                 
             });

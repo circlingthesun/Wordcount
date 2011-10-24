@@ -50,7 +50,7 @@ def timedatas():
         
         final = []
         for name in result:
-            final.append({ "name": name, "data": result[name]})
+            final.append({ "name": name, "id": name, "data": result[name]})
 
         return json.dumps(final)
     except Exception as e:
