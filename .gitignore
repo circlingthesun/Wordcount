@@ -5,3 +5,4 @@ include/*
 *.db-journal
 bin/*
 .DS_Store
+*.db
