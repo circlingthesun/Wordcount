@@ -134,7 +134,6 @@ def timedatas():
             else: 
                 c.execute('DELETE FROM count where id = ?', (id,))
                 conn.commit()
-                print id
         
         final = []
         for name in result:
