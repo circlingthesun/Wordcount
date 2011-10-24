@@ -54,12 +54,12 @@ def hello():
                 }
 
                 $.getJSON("/json", function(datas) {
-                    console.log(datas);
+                    //console.log(datas);
 
                     for (series in datas) {
-                        console.log(datas[series]);
+                        //console.log(datas[series]);
                         for (d in datas[series]["data"]) {
-                            console.log(datas[series]["data"][d]);
+                            //console.log(datas[series]["data"][d]);
                             
                             datas[series]["data"][d][0] = Date.parse(datas[series]["data"][d][0]) + 2 * 60 * 60 * 1000;
                         }
@@ -97,6 +97,30 @@ def hello():
                         },
                         series: datas
                     });
+
+                    function getMoar () {
+                        $.getJSON("/json?min=5", function(dat) {
+                            console.log("GOT MOAR");
+                            for (series in dat) {
+
+                                for (d in dat[series]["data"]) {
+                                    dat[series]["data"][d][0] = Date.parse(datas[series]["data"][d][0]) + 2 * 60 * 60 * 1000;
+                                    console.log(dat[series]["data"][d]);
+                                }
+
+                                var found = false;
+                                for (serie in chart.series) {
+                                    if (dat[series]["name"] == chart.series[serie]["name"]) {
+                                        console.log("hurray");
+                                        chart.series[serie].addPoint(dat[series]["data"][0]);
+                                    }
+                                    console.log(chart.series[serie]["name"]);
+                                }
+                            }
+                        });
+                    };
+
+                    setInterval(getMoar(), 5);
                 });
                 
             });
@@ -115,12 +139,14 @@ def hello():
 </html>"""
     return re
 
-@app.route("/json")
+@app.route("/json", methods=['GET'])
 def timedatas():
     try:
         conn = sqlite3.connect(db_file, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
         c = conn.cursor()
-        c.execute('SELECT id, d as "[timestamp]", name, count FROM count')
+        minute = request.args.get('min', 10 * 24 * 60 * 60, type=int)
+
+        c.execute('SELECT id, d as "[timestamp]", name, count FROM count WHERE d > ?', (datetime.now() - timedelta(minutes=minute),))
 
         data = c.fetchall()
         result = {}
