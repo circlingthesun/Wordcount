@@ -1,0 +1,14 @@
+README
+setup.py
+Wordcount.egg-info/PKG-INFO
+Wordcount.egg-info/SOURCES.txt
+Wordcount.egg-info/dependency_links.txt
+Wordcount.egg-info/requires.txt
+Wordcount.egg-info/top_level.txt
+wclient/counter.py
+wclient/docxcount.py
+wclient/latexcount.py
+wclient/main.py
+wclient/settings.py
+wclient/wordcount.py
+wserver/count.py

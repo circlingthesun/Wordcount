@@ -6,3 +6,4 @@ include/*
 bin/*
 .DS_Store
 *.db
+env
