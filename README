@@ -1,1 +1,13 @@
-This project allows one to monitor word counts. It comes with a server that displays wordcounts from multiple people and a client that updates counts.
+Description
+-----------
+The Wordcount client keeps track of the number of words in your Laxtex and Docx documents and periodically sends them off. The Wordcount server allows people to collaboratively monitor each others progress on writing assignments.
+
+Instalation
+------------
+git clone https://github.com/circlingthesun/Wordcount.git
+cd Wordcount
+
+sudo apt-get install python-virtualenv python-pyside
+virtualenv env --no-site-packages
+source env/bin/activate
+python setup.py develop
