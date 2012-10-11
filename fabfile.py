@@ -22,7 +22,7 @@ def push_to_remote():
 def pull_remote():
     with cd(code_dir):
         #run("git reset --hard HEAD")
-        run("git checkout master")
+        #run("git checkout master")
         run("git pull")
         #run("git reset --hard HEAD")
         run("source env/bin/activate && python setup.py develop")
