@@ -26,7 +26,7 @@ def pull_remote():
         run("git pull %s" % env.remote_dir)
         #run("git reset --hard HEAD")
         run("source env/bin/activate && python setup.py develop")
-        run("touch formative.wsgi")
+        run("touch wserver/count.wsgi")
 
 def deploy():
     commit()
