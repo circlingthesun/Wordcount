@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import sys, os, time, subprocess
+import os.path
 import signal
 import settings, main
 import ConfigParser
@@ -9,7 +10,7 @@ import urllib
 from PySide.QtCore import *
 from PySide.QtGui import *
 from docxcount import countdocx
-from latexcount import latexcount
+from latexcount import latexcount, latexcountdir
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
@@ -32,7 +33,7 @@ class Settings(QDialog):
         self.settings.group_id.setText(app_settings["group_id"])
         self.settings.username.setText(app_settings["username"])
         self.settings.password.setText(app_settings["password"])
-
+        parent.mainwindow.wordcount.setText("Updating in %d sec" % interval)
         self.show()
 
 
@@ -71,14 +72,18 @@ class Counter(threading.Thread):
         while True:
             global wordcount
 
+            is_dir = os.path.isdir(app_settings["document"])
             file_type = app_settings["document"].split(".")[-1]
 
             try:
-                if file_type == "docx":
+                if is_dir:
+                    wordcount = latexcountdir(app_settings["document"])
+                elif file_type == "docx":
                     wordcount = countdocx(app_settings["document"])
 
-                if file_type == "tex":
+                elif file_type == "tex":
                     wordcount = latexcount(app_settings["document"])
+
 
             except Exception as e:
                 print "Count failed:"
@@ -88,6 +93,12 @@ class Counter(threading.Thread):
 
             print wordcount
             print file_type
+
+            if app_settings["username"] == "yournamegoeshere":
+                main.mainwindow.wordcount.setText("CHECK SETTINGS")
+            elif not os.path.exists(app_settings["document"]):
+                main.mainwindow.wordcount.setText("Invalid path")
+
 
             params = urllib.urlencode({'c': str(wordcount), 'name': app_settings["username"]})
 

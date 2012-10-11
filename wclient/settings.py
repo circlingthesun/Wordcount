@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'settings.ui'
 #
-# Created: Mon Aug  6 02:20:55 2012
-#      by: pyside-uic 0.2.14 running on PySide 1.1.1
+# Created: Thu Oct 11 16:47:12 2012
+#      by: pyside-uic 0.2.13 running on PySide 1.1.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -28,6 +28,7 @@ class Ui_Dialog(object):
         self.username.setObjectName("username")
         self.gridLayout.addWidget(self.username, 3, 1, 1, 1)
         self.group_id = QtGui.QLineEdit(self.gridLayoutWidget)
+        self.group_id.setEnabled(False)
         self.group_id.setObjectName("group_id")
         self.gridLayout.addWidget(self.group_id, 2, 1, 1, 1)
         self.label_2 = QtGui.QLabel(self.gridLayoutWidget)
@@ -53,6 +54,7 @@ class Ui_Dialog(object):
         self.label_4.setObjectName("label_4")
         self.gridLayout.addWidget(self.label_4, 4, 0, 1, 1)
         self.password = QtGui.QLineEdit(self.gridLayoutWidget)
+        self.password.setEnabled(False)
         self.password.setEchoMode(QtGui.QLineEdit.Password)
         self.password.setReadOnly(True)
         self.password.setPlaceholderText("")

@@ -14,6 +14,7 @@ setup(
         'pySide',
         'python-dateutil',
         'flask',
+        'fabric',
         #'python-ntlm',
       ],
 )

@@ -1,3 +1,4 @@
 pySide
 python-dateutil
 flask
+fabric

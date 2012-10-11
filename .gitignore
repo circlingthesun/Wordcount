@@ -7,3 +7,4 @@ bin/*
 .DS_Store
 *.db
 env
+Wordcount.egg-info

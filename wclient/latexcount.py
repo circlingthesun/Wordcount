@@ -57,6 +57,16 @@ def dollar(index, no, sinDbl):
 
 #########################################
 
+def latexcountdir(path):
+    dircontent = os.listdir(path)
+    count = 0
+    for f in dircontent:
+        if f.endswith(".tex"):
+            words = latexcount(os.path.join(path,f))
+            count = words + count
+            print f, words
+    return count
+
 def latexcount(path):
 
     # read file
