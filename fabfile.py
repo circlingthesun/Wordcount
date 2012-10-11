@@ -23,7 +23,7 @@ def pull_remote():
     with cd(code_dir):
         #run("git reset --hard HEAD")
         #run("git checkout master")
-        run("git pull")
+        run("git pull %d" % env.remote_dir)
         #run("git reset --hard HEAD")
         run("source env/bin/activate && python setup.py develop")
         run("touch formative.wsgi")
