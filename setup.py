@@ -11,7 +11,7 @@ setup(
       url='http://www.circlngthesun.co.za',
       packages=['wclient', 'wserver'],
       install_requires=[
-        'pySide',
+        #'pySide',
         'python-dateutil',
         'flask',
         'fabric',
