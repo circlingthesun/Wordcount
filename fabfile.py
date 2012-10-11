@@ -17,7 +17,7 @@ def commit():
     local("git add -p && git commit")
 
 def push_to_remote():
-    local("git push ssh://%(user)s@%(remote_dev)s/%(remote_dir)s" % env)
+    local("git push ssh://%(user)s@%(remote_dev)s/%(remote_dir)s master" % env)
 
 def pull_remote():
     with cd(code_dir):
