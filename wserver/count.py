@@ -64,6 +64,9 @@ def update():
     try:
         count = int(request.form['c'])
         name = request.form['name']
+
+        if name == "Nobody":
+            return "Please set your username."
         
         sql = 'insert into count(d, name, count) values (?, ?, ?)'
         c.execute(sql, (datetime.now(), name, count))
@@ -79,4 +82,4 @@ def test():
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host="0.0.0.0", port=6543)
+    app.run(host="0.0.0.0", port=7001)
