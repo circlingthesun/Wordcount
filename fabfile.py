@@ -14,7 +14,8 @@ def zipclient():
 
 def commit():
     zipclient()
-    local("git add -p && git commit")
+    with settings(warn_only=True):
+        local("git add -p && git commit")
 
 def push_to_remote():
     local("git push origin master")
