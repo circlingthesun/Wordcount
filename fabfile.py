@@ -17,14 +17,14 @@ def commit():
     local("git add -p && git commit")
 
 def push_to_remote():
-    local("git push %s" % repo)
+    local("git push origin master")
     #local("git push ssh://%(user)s@%(remote_dev)s/%(remote_dir)s master" % env)
 
 def pull_remote():
     with cd(code_dir):
         #run("git reset --hard HEAD")
         #run("git checkout master")
-        run("git pull %s" % repo)
+        run("git pull")
         #run("git reset --hard HEAD")
         run("source env/bin/activate && python setup.py develop")
 
