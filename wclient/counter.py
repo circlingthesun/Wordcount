@@ -47,7 +47,7 @@ def run():
             f = urllib.urlopen(url, params)
             print f.read()
         except:
-            print "Cannot comunicate with server"
+            print "Cannot communicate with server"
             
         time.sleep(interval)
     
