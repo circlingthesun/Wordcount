@@ -1,30 +1,36 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Thesis word counts</title>
-        
-        <link rel="stylesheet" href="/static/gh-fork-ribbon.css" />
-        <!--[if IE]>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+    <title>Thesis word progress</title>
+    <link href="/static/gh-fork-ribbon.css" rel="stylesheet">
+
+    <!--[if IE]>
             <link rel="stylesheet" href="/static/gh-fork-ribbon.ie.css" />
         <![endif]-->
-        
-        <!-- 1. Add these JavaScript inclusions in the head of your page -->
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-        <script type="text/javascript" src="static/js/highcharts.js"></script>
-        
-        <!-- 1a) Optional: add a theme file -->
-        <!--
-            <script type="text/javascript" src="static/js/themes/gray.js"></script>
-        -->
-        
-        <!-- 1b) Optional: the exporting module -->
-        <script type="text/javascript" src="static/js/modules/exporting.js"></script>
-        
-        
-        <!-- 2. Add the JavaScript to initialize the chart on document ready -->
-        <script type="text/javascript">
-        
+
+    <style>
+        .center {
+            margin-left:auto;
+            margin-right:auto;
+            width:850px;
+        }
+    </style>
+
+    <!-- 1. Add these JavaScript inclusions in the head of your page -->
+    <script src=
+    "http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type=
+    "text/javascript"></script>
+    <script src="static/js/highcharts.js" type="text/javascript"></script><!-- 1a) Optional: add a theme file -->
+
+    <script src="static/js/themes/gray.js" type="text/javascript"></script><!-- 1b) Optional: the exporting module -->
+
+    <script src="static/js/modules/exporting.js" type="text/javascript"></script>
+    <!-- 2. Add the JavaScript to initialize the chart on document ready -->
+    <script type="text/javascript">
+    
             var chart;
             $(document).ready(function() {
                 Date.prototype.addHours= function(h){
@@ -52,7 +58,7 @@
                             type: 'spline'
                         },
                         title: {
-                            text: 'Thesis word counts'
+                            text: 'Thesis progress'
                         },
                         xAxis: {
                             type: 'datetime',
@@ -70,7 +76,7 @@
                         },
                         tooltip: {
                             formatter: function() {
-                                    return '<b>'+ this.series.name +'</b><br/>'+
+                                    return '<b>'+ this.series.name +'<\/b><br/>'+
                                     Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y +' m';
                             }
                         },
@@ -94,32 +100,45 @@
                 
             });
                 
-        </script>
-        
-    </head>
-    <body>
-    
+    </script>
+</head>
+
+<body>
     <div class="github-fork-ribbon-wrapper right">
         <div class="github-fork-ribbon">
-            <a href="https://github.com/circlingthesun/Wordcount">Fork me on GitHub</a>
+            <a href="https://github.com/circlingthesun/Wordcount">Fork me on
+            GitHub</a>
         </div>
     </div>
 
+    <!--<div class="center">
+    <img src="static/theorem.jpg" width="850"/>
+    </div> -->
 
-        <!-- 3. Add the container -->
-        <div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
+    <!-- 3. Add the container -->
+    <div id="container" style="width: 850px; height: 400px; margin: 0 auto">
+    </div>
+
+    <div class="center" style="text-align:center">
+        <a href="/static/client.zip"><img src="static/download.png" width="50"/><span style="position:relative; bottom: 20px;">Download the app and add your name.</span></a>
+        <br/><br/>
+        <img src="static/theorem.jpg"/>
         
-        <a href="/static/client.zip">Download</a> the app to add your name.
+        <br/>
+    
+    </div>
 
-	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <script>
+    
+    
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-45005878-1', 'jacklab.co.za');
-  ga('send', 'pageview');
+    ga('create', 'UA-45005878-1', 'jacklab.co.za');
+    ga('send', 'pageview');
 
-        </script>                
-    </body>
+    </script>
+</body>
 </html>
