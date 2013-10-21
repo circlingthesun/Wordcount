@@ -1,4 +1,4 @@
-.pyc*
+*.pyc
 *~
 lib/*
 include/*
@@ -7,4 +7,4 @@ bin/*
 .DS_Store
 *.db
 env
-Wordcount.egg-info
+*.egg-info
