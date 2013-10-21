@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import os, json, dateutil.parser
+import sys, os, json, dateutil.parser
 from datetime import datetime, timedelta
 from flask import Flask
 from flask import request
@@ -17,17 +17,11 @@ c.execute(sql)
 filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), "count.txt")
 
 @app.route("/")
-def hello():
-
-    #conn = sqlite3.connect('counts.db', detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
-    #c = conn.cursor()
-    #c.execute("SELECT max(id), d, name, count FROM count GROUP BY name")
-    #data = c.fetchall()
-
+def main():
     return render_template('index.html')
 
 @app.route("/json", methods=['GET'])
-def timedatas():
+def timedata():
     try:
         conn = sqlite3.connect(db_file, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
         c = conn.cursor()
@@ -81,5 +75,8 @@ def test():
     return "works"
 
 if __name__ == "__main__":
+    port = 7001
+    if len(sys.argv) == 2:
+        port = int(sys.argv[1])
     app.debug = True
-    app.run(host="0.0.0.0", port=7001)
+    app.run(host="0.0.0.0", port=port)
