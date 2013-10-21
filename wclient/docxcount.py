@@ -6,11 +6,12 @@ from xml.sax.handler import ContentHandler
 from xml import sax
 
 def getXml(filename):
-    with zipfile.ZipFile(filename) as myzip:
-        fname = myzip.extract('word/document.xml', '.')
-        val =  open(fname).read()
-        shutil.rmtree(os.path.dirname(fname))
-        return val
+    myzip = zipfile.ZipFile(filename)
+    fname = myzip.extract('word/document.xml', '.')
+    val =  open(fname).read()
+    shutil.rmtree(os.path.dirname(fname))
+    myzip.close()
+    return val
 
 class textHandler(ContentHandler):
     text = []
